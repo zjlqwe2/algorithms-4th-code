@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Bag<Item> implements Iterable<Item>{
+public class ResizeArrayBag<Item> implements Iterable<Item>{
     private int N;
     private Item[] elements;
     private static int DEFAULT_CAPACITY = 2;
@@ -12,7 +12,7 @@ public class Bag<Item> implements Iterable<Item>{
     /**
      * 没有指定stack初始容量，则调用默认的容量
      */
-    Bag(){
+    ResizeArrayBag(){
         this(DEFAULT_CAPACITY);
     }
 
@@ -20,7 +20,7 @@ public class Bag<Item> implements Iterable<Item>{
      * 初始化
      * @param capacity 初始容量
      */
-    Bag(int capacity){
+    ResizeArrayBag(int capacity){
         elements = (Item[]) new Object[capacity];
 
     }
@@ -79,7 +79,7 @@ public class Bag<Item> implements Iterable<Item>{
         return new BagIterator();
     }
     public static void main(String[] args){
-        Bag<String> stack = new Bag<>();
+        ResizeArrayBag<String> stack = new ResizeArrayBag<>();
         System.out.println("isEmpty:" + stack.isEmpty());
         stack.add("hello world!");
         stack.add("test!");
