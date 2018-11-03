@@ -22,7 +22,6 @@ public class ResizeArrayBag<Item> implements Iterable<Item>{
      */
     ResizeArrayBag(int capacity){
         elements = (Item[]) new Object[capacity];
-
     }
 
     /**
@@ -58,15 +57,15 @@ public class ResizeArrayBag<Item> implements Iterable<Item>{
         elements = Arrays.copyOf(elements, l);
     }
     class BagIterator implements Iterator<Item>{
-        int k = N - 1;
+        int k = 0;
         @Override
         public boolean hasNext() {
-            return k >= 0;
+            return k < N;
         }
         @Override
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            return elements[k--];
+            return elements[k++];
         }
         @Override
         public void remove() {
@@ -91,6 +90,7 @@ public class ResizeArrayBag<Item> implements Iterable<Item>{
         }
 
         System.out.println("==methods==");
+        System.out.println("size:" + stack.size());
         System.out.println("isEmpty:" + stack.isEmpty());
     }
 }

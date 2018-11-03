@@ -15,7 +15,6 @@ public class ResizeArrayStack<Item> implements Iterable<Item>{
     ResizeArrayStack(){
         this(DEFAULT_CAPACITY);
     }
-
     /**
      * 初始化
      * @param capacity 初始容量
@@ -24,7 +23,6 @@ public class ResizeArrayStack<Item> implements Iterable<Item>{
         elements = (Item[]) new Object[capacity];
 
     }
-
     /**
      *
      * @return 堆是否为空
@@ -58,8 +56,8 @@ public class ResizeArrayStack<Item> implements Iterable<Item>{
     public Item pop(){
         if(isEmpty()) throw new NoSuchElementException("stack underflow");
         Item result = elements[--N];
-        if(N >= 2 && N <= elements.length / 4){
-            resize(N * 2);
+        if(N > 0 && N == elements.length / 4){
+            resize(elements.length / 2);
         }
         return result;
     }
@@ -88,7 +86,6 @@ public class ResizeArrayStack<Item> implements Iterable<Item>{
         @Override
         public void remove() {
             throw new UnsupportedOperationException();
-
         }
     }
     @Override
