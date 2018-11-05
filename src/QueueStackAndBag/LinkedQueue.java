@@ -2,8 +2,9 @@ package QueueStackAndBag;
 
 import java.util.Iterator;
 
-public class LinkedStack<Item> implements Iterable<Item>{
+public class LinkedQueue<Item> implements Iterable<Item>{
     private Node first;
+    private Node last;
     private int N;
     private class Node{
         Item value;
@@ -23,18 +24,23 @@ public class LinkedStack<Item> implements Iterable<Item>{
     public int size(){
         return N;
     }
-    public void push(Item item){
-        first = new Node(item, first);
+    public void enqueue(Item item){
+        if(isEmpty()){
+            first = last = new Node(item);
+        }else{
+            last.next = new Node(item);
+            last = last.next;
+        }
         N++;
     }
-    public Item pop(){
+    public Item dequeue(){
         if(isEmpty()) throw new RuntimeException();
         Item result = first.value;
         first = first.next;
         N--;
         return result;
     }
-    public Item peek(){
+    public Item first(){
         if(isEmpty()) throw new RuntimeException();
         return first.value;
     }
@@ -60,20 +66,20 @@ public class LinkedStack<Item> implements Iterable<Item>{
         return new StackIterator();
     }
     public static void main(String[] args){
-        LinkedStack<String> stack = new LinkedStack<>();
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
         System.out.println("=====methods====");
-        System.out.println("isEmpty:" + stack.isEmpty());
-        stack.push("test1!");
-        stack.push("test2!");
-        System.out.println("dequeue:" + stack.pop());
-        stack.push("hello world!");
-        System.out.println("first:" + stack.peek());
-        System.out.println("size:" + stack.size());
-        System.out.println("isEmpty:" + stack.isEmpty());
+        System.out.println("isEmpty:" + queue.isEmpty());
+        queue.enqueue("test1!");
+        queue.enqueue("test2!");
+        System.out.println("dequeue:" + queue.dequeue());
+        queue.enqueue("hello world!");
+        System.out.println("first:" + queue.first());
+        System.out.println("size:" + queue.size());
+        System.out.println("isEmpty:" + queue.isEmpty());
 
         System.out.println("=====forEach====");
-        for(String s : stack){
+        for(String s : queue){
             System.out.println(s);
         }
     }

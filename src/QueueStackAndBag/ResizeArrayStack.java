@@ -106,7 +106,7 @@ public class ResizeArrayStack<Item> implements Iterable<Item>{
 
         System.out.println("==methods==");
         System.out.println("isEmpty:" + stack.isEmpty());
-        System.out.println("peek:" + stack.peek());
+        System.out.println("first:" + stack.peek());
         System.out.println("dequeue:" + stack.pop());
         System.out.println("size:" + stack.size());
         System.out.println("dequeue:" + stack.pop());
